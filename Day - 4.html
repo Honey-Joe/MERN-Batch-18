@@ -3,10 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Day - 4</title>
+    <meta name="description" content="This is a sample HTML document demonstrating various form elements and a table.">
+    <meta name="keywords" content="HTML, form, table, input elements">
+    <meta name="author" content="Your Name">
 </head>
 <body>
-    <h1>Day - 4</h1>
-    <p>Hello </p>
+
+    <form>
+        <label for="name">Name :</label>
+        <input type="text" placeholder="Enter your name " /><br /> <br>
+        <label for="email">Email :</label>
+        <input type="email" /><br> <br>
+        <label for="password">Password:</label>
+        <input type="password" /><br>
+        <input type="date" />
+        <input type="radio" name="" id="">
+        <input type="number" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <table border="1" >
+        <thead>
+            <th>Name</th>
+            <th>Age</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>   
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Emily Johnson</td>
+                <td>22</td>
+            </tr>
+    </table>
+
+    <!-- Semantic HTML elements:
+        Article  - Repeated Content 
+
+        Section - A thematic Seperating of content, typically with a heading.
+
+        Aside - Content that is tangentially related to the content around it, often used for sidebars or additional information.
+
+        Footer - The footer of a page, typically containing copyright information or links.
+        Nav - Navigation links for the page.
+
+        Main - The main content of the page, typically unique to the page.
+
+        Div - A generic container for grouping content, often used for styling purposes.
+    
+    -->
+        <div>
+            <h1>Heading</h1>
+            <p>This is a paragraph inside a div element.</p>
+            <button>Sub,it</button>
+        </div>
+        <div>
+            
+        </div>
+    <article> 
+        <h2>Article Title</h2>
+        <p>This is an article about HTML semantics.</p> 
+    </article>
+    <section>
+        <div>
+            <h1>Section Heading</h1>
+            <p>This is a paragraph inside a section element.</p>
+        </div>
+        <div>   </div>
+        <h2>Section Title</h2>
+        <p>This section contains information about HTML forms.</p>
+    </section>
+    <aside>
+        <h2>Related Links</h2>
+        <ul>
+            <li><a href="https://www.w3schools.com/html/html_forms.asp">HTML Forms</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">HTML Tables</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>  
+    </footer>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Main Content</h1>
+        <p>This is the main content area of the page.</p>
+    </main>
+    <header>
+        <h1>Welcome to My Web Page</h1>
+        <p>This is a sample header section.</p>
+    </header>
+
+
+
 </body>
 </html>
