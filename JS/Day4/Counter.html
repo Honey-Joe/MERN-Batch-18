@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="h-screen flex justify-center items-center">
+      <div class="flex flex-col gap-5 items-center">
+        <h1 class="text-[38px] font-bold" id="count">0</h1>
+        <div class="flex gap-3 items-center">
+          <button
+            class="py-2 px-6 rounded-lg bg-green-800 text-white"
+            id="start"
+          >
+            Start
+          </button>
+          <button id="stop" class="py-2 px-6 rounded-lg bg-red-800 text-white">
+            Stop
+          </button>
+          <button id="time" class="py-2 px-6 rounded-lg bg-blue-800 text-white">
+            Timer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var start = document.getElementById("start");
+      var stop = document.getElementById("stop");
+      var time = document.getElementById("time");
+      var count = document.getElementById("count");
+
+      var setI;
+      start.addEventListener("click", () => {
+        console.log("start");
+
+        setI = setInterval(() => {
+          count.textContent = parseInt(count.textContent) + 1;
+        }, 1000);
+      });
+
+      stop.addEventListener("click", () => {
+        console.log("stop");
+        clearInterval(setI);
+      });
+
+      time.addEventListener("click", () => {
+        console.log("Timer is set");
+
+        setTimeout(() => {
+          alert("Over Time");
+          clearInterval(setI);
+        }, 5000);
+      });
+
+      clearTimeout();
+      
+    </script>
+  </body>
+</html>

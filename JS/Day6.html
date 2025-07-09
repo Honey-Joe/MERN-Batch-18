@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--FireBase SDK-->
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"
+    ></script>
+  </head>
+  <body>
+    <div class="2xl:container mx-auto bg-gray-800">
+      <div class="w-[90%] mx-auto flex justify-center items-center h-screen">
+        <div
+          class="bg-white/20 border p-5 border-white rounded-lg shadow-2xl w-[400px]"
+        >
+          <h1 class="text-center text-[30px] font-bold">Login</h1>
+          <hr class="py-2" />
+          <form class="flex flex-col gap-4" id="form">
+            <div class="flex flex-col gap-1">
+              <label for="email" class="text-white">Email:</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="py-2 px-3 border-2 rounded-lg outline-none w-full"
+              />
+              <p id="emalErr" class="text-sm text-red-500 text-wrap"></p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="email" class="text-white">Password:</label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                class="py-2 px-3 border-2 rounded-lg outline-none w-full"
+              />
+              <p id="passErr" class="text-sm text-red-500 text-wrap"></p>
+            </div>
+            <div>
+              <button
+                class="py-3 px-6 rounded-lg bg-green-800 text-white w-full"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var form = document.getElementById("form");
+      var email = document.getElementById("email");
+      var password = document.getElementById("password");
+      var emailErr = document.getElementById("emalErr");
+      var passErr = document.getElementById("passErr");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var isValid = advancedValidation(email.value, password.value);
+
+        if (isValid) {
+          saveData(email.value, password.value);
+          console.log("Data is send");
+        }
+      });
+
+      function saveData(email, pass) {
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCtT-1UVovUPXCUYQrOrWOlfWbUF-g96w4",
+          authDomain: "mernb18.firebaseapp.com",
+          databaseURL:
+            "https://mernb18-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "mernb18",
+          storageBucket: "mernb18.firebasestorage.app",
+          messagingSenderId: "854370804104",
+          appId: "1:854370804104:web:2e385f70de96f14f47da3d",
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.database().ref("LoginForm");
+
+        db.push({
+          email: email,
+          password: pass,
+        });
+      }
+
+      email.addEventListener("input", (e) => {
+        var emailRegx = /^\S+@\S+\.\S+$/;
+
+        if (e.target.value == "") {
+          emailErr.textContent = "Required";
+        } else if (!e.target.value.match(emailRegx)) {
+          emailErr.textContent = "Email myst in this format coding@gamil.com";
+        } else {
+          emailErr.textContent = "";
+        }
+      });
+
+      password.addEventListener("input", (e) => {
+        var chaRegex = /(?=.*?[#?!@$%^&*-])/;
+        var passRegex =
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+        if (e.target.value == "") {
+          passErr.textContent = "Required";
+        } else if (!e.target.value.match(chaRegex)) {
+          passErr.textContent = "At least one special character";
+        } else if (!e.target.value.match(passRegex)) {
+          passErr.textContent = "Password must in this format Coding@123";
+        } else {
+          passErr.textContent = "";
+        }
+      });
+
+      function advancedValidation(email, pass) {
+        var emailRegx = /^\S+@\S+\.\S+$/;
+        var passRegex =
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+        var isValid = true;
+
+        if (email.match(emailRegx)) {
+          console.log(`${email} is vailed`);
+          emailErr.textContent = "";
+        } else {
+          console.log("invalied");
+          emailErr.textContent = "invalied email format";
+          isValid = false;
+        }
+
+        if (pass.match(passRegex)) {
+          passErr.textContent = "";
+          valid = true;
+        } else {
+          passErr.textContent = "Invalied password";
+          isValid = false;
+        }
+
+        if (isValid) {
+          alert("Login Successfull");
+          setTimeout(() => {
+            form.reset();
+          }, 1000);
+        }
+        return isValid;
+      }
+    </script>
+  </body>
+</html>

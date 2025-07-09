@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex justify-center items-center h-screen">
+      <div class="flex flex-col items-center gap-2">
+        <h1 class="text-[48px] font-bold">Counter</h1>
+        <p class="text-[48px] font-bold" id="count">0</p>
+        <div class="flex gap-3">
+          <button class="border-2 border-black py-2 px-6 rounded-lg" id="des">
+            DECREASE
+          </button>
+          <button class="border-2 border-black py-2 px-6 rounded-lg" id="res">
+            RESET
+          </button>
+          <button class="border-2 border-black py-2 px-6 rounded-lg" id="inc">
+            INCREASE
+          </button>
+        </div>
+
+        <img
+          src="https://ik.imagekit.io/4z8covdo9/Full%20stack/bulb-go-on-img.png"
+          alt="blub_on"
+          width="250px"
+          id="blub_on"
+        />
+      </div>
+    </div>
+
+    <script>
+      var count = document.getElementById("count");
+      var desBtn = document.getElementById("des");
+      var resBtn = document.getElementById("res");
+      var incBtn = document.getElementById("inc");
+      var blub_on = document.getElementById("blub_on");
+
+      function updateColor() {
+        let value = parseInt(count.textContent);
+
+        if (value < 0) {
+          count.style.color = "red";
+        } else if (value > 0) {
+          count.style.color = "green";
+        } else {
+          count.style.color = "black";
+        }
+      }
+
+      incBtn.addEventListener("click", () => {
+        count.textContent = parseInt(count.textContent) + 1;
+        updateColor();
+
+        blub_on.src =
+          "https://ik.imagekit.io/4z8covdo9/Full%20stack/cat-img.png";
+      });
+
+      desBtn.addEventListener("click", () => {
+        count.textContent = parseInt(count.textContent) - 1;
+        updateColor();
+
+        blub_on.src =
+          "https://ik.imagekit.io/4z8covdo9/Full%20stack/bulb-go-on-img.png";
+      });
+
+      res.addEventListener("click", () => {
+        count.textContent = 0;
+        updateColor();
+      });
+    </script>
+  </body>
+</html>
